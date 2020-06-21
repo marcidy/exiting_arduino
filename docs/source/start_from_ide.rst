@@ -125,11 +125,11 @@ Let's look at this command in more depth.
 
 avr-g++
 -------
-This is where you need to start paying close attention.  You'll need to understand which options passed to this command will change based on the chip you are programming.  Once you use this command, you are outside of the Arduino build environment and need valid C++ (ie not a .ino file) and which arduino specific libraries from Arduino are used.  We'll stick to using the arduino libraries for now, and in a different section look at how to replace these.  See :ref:`arduino_builder` to see how the sketch gets converted too valid C++ in the build directory.
+This is where you need to start paying close attention.  You'll need to understand which options passed to this command will change based on the chip you are programming.  Once you use this command, you are outside of the Arduino build environment and need valid C++ (ie not a .ino file) and which arduino specific libraries from Arduino are used.  We'll stick to using the arduino libraries for now, and in a different section look at how to replace these.  See :ref:`arduino_builder_preproc` to see how the sketch gets converted too valid C++ in the build directory.
 
 `avr-g++` is part of `gcc` which is the Gnu C Compilier.  It starts to get compilicated talking about what exactly is `avr-g++` vs `gcc`, far beyond the scope of this document, so don't worry too much about it.  It suffices to say that `avr-g++` is a free, open source compilier for code which needs to compile to a binary that an avr microcontroller can run.  It's not the only compilier, but it being free and open source means it can be included with the Arduino IDE, and likewise you can use it, without paying.  
 
-The compilier will read source files, and convert what is written in those source files into a binary executable. A natural question is "how?", which of course has many layers and is complicated.  I'll include a :ref:`what-is-compilation` section, but it's definitely out of scope for the quickstart.  We'll assume it's possible and move on.
+The compilier will read source files, and convert what is written in those source files into a binary executable. A natural question is "how?", which of course has many layers and is complicated, and discussed in :ref:`compilation_primer`.
 
 However, it is critical to know (not understand just yet) that "compilation" is a multi-step process:
 
