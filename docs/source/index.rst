@@ -10,9 +10,11 @@ Welcome to exiting_arduino's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   quick
+   start_from_ide
    why_ardunio_terminology
    arduino_builder
+   compilation
+   architecture_introduction
 
 Indices and tables
 ==================

@@ -1,24 +1,26 @@
-==========
-Quickstart
-==========
-    This is an overview with minimal explanation which provides the key details needed to develop for arduino compatible hardware without using the Arduino IDE.  The goal is to point out what the IDE is actually *doing*, why each step is necessary, and how you can do it manaully or with scripts.  For someone who has never compiled their own program, the more detailed explanation may be better, but this will connect the dots for those that just wish to quickly dive in.
+=============================
+Starting from the Arduino IDE
+=============================
+This is an overview with minimal explanation which provides the key details needed to develop, compile, and load firmware without using the Arduino IDE.  The goal is to point out what the IDE is actually *doing*, why each step is necessary, and how you can do it manaully or with scripts.  It will move in steps from using the IDE as is, to executing the same commands on the command line and explaining what the commands are doing and what needs to be changed.
 
-    I'll try to cross link the sections so a more detailed explanaiton is accessible.
+For someone who has never compiled their own program, the more detailed explanation about compilation specifically may also be interesting.
 
-First Compilation
-=================
-    Load up the Arduino IDE, and load the "fade.ino" sketch.  I'm never going to use the work "sketch" again, I'll refer to them as files, sources, etc. Hit the compile (verify) button, and make the output screen big enough to see what's happening.
+I'll try to cross link the sections so a more detailed explanaiton is accessible.
+
+IDE Compilation
+===============
+Load up the Arduino IDE, and load the "fade.ino" sketch.  Note that sketches (.ino files) are not exactly valid C or C++, but this will be explained later.
 
     .. image:: img/compile-1.png
         :height: 480px
         :width: 640px
         :alt: Arduino IDE Preferences
 
-    Not much info given at all!  We will change that now to see what commands the IDE is executing to compile the program.
+Not much info given at all!  We will change that now to see what commands the IDE is executing to compile the program.
 
-IDE configuration
-=================
-    The IDE provides all the information we need, but we need to tick a couple boxes so it will output the relevant information.
+IDE Configuration
+-----------------
+The IDE provides all the information we need, but we need to tick a couple boxes so it will output the relevant information.
 
     .. image:: img/arduino-preferences-2.png
         :width: 640px
@@ -32,8 +34,8 @@ Open Arduino preferences.
 
 Tick these boxes to enable more output.
 
-Detailed Compilation
-====================
+Detailed IDE Compilation
+------------------------
 Hit compile again.
 
 .. image:: img/compile-2.png
@@ -74,7 +76,13 @@ Lot's more output!  This is a combination of commands tht were run and output fr
   Using board 'uno' from platform in folder: /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2
   Using core 'arduino' from platform in folder: /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2
 
-I'm on a linux machine so `/home/marcidy/arduino-1.8.10` are the path to the arduino builder tool.  This tool is a program that comes with the arduino IDE to collect information about the code you want to compile.  I'm going to skip this tool in this section since the goal of this tutorial is to not use arduino tools, but there's a more in-depth explanation here: :ref:`arduino-builder`
+I'm on a linux machine so `/home/marcidy/arduino-1.8.10` are the path to the arduino builder tool.  This tool is a program that comes with the arduino IDE to collect information about the code you want to compile.  It uses information from things you've set in the IDE (like the board) and libraries installed through the IDE.  
+
+I'm going to skip this tool in this section since the goal of this tutorial is to not use arduino tools, but there's a more in-depth explanation here: :ref:`arduino-builder`
+
+Command Line Compilation
+========================
+At this stage we have a valid C++ file output from :ref:`arduino-builder` preprocessing the sketch.
 
 I've expanded the next lines to split out all the options passed to avr-g++.
 
@@ -107,12 +115,16 @@ I've expanded the next lines to split out all the options passed to avr-g++.
     -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_709419/sketch/Fade.ino.cpp
     -o /dev/null
 
-Here we see the beginning of the tool-chain for avr.   Quick pause to explain what's happening.  Your computer where you write arduino code is probably Windows, Mac, or linux, and most likely runs an Intel or AMD processor. There's nothing fundamentally different from those processors and an avr.  You can compile code for them, and you end up with a binary file which they can execture.  This is all explained in detail in :ref:`Compiling Explained`.  However, key to what we are doing, is that we are not compiling for your computer.  We are compiling for a completely difference processor.  This is called `cross compiling`.  Our computer is the host where we are executing commands to compile for the target machine, in this case an Arduino Uno which has an Atmel AVR ATMega328p microcontroller.
+Here we see the beginning of the tool-chain for avr.   
+
+Quick pause to explain what's happening.  Your computer where you write arduino code is probably Windows, Mac, or linux, and most likely runs an Intel or AMD processor. There's nothing fundamentally different from those processors and an avr.  You can compile code for them, and you end up with a binary file which they can execture.  This is all explained in detail in :ref:`compilation_primer`.  
+
+However, key to what we are doing, is that we are not compiling for your computer.  We are compiling for a completely difference processor.  This is called `cross compiling`.  Our computer is the host where we are executing commands to compile for the target machine, in this case an Arduino Uno which has an Atmel AVR ATMega328p microcontroller.
 
 Let's look at this command in more depth.
 
 avr-g++
-=======
+-------
 This is where you need to start paying close attention.  You'll need to understand which options passed to this command will change based on the chip you are programming.  Once you use this command, you are outside of the Arduino build environment and need valid C++ (ie not a .ino file) and which arduino specific libraries from Arduino are used.  We'll stick to using the arduino libraries for now, and in a different section look at how to replace these.  See :ref:`arduino_builder` to see how the sketch gets converted too valid C++ in the build directory.
 
 `avr-g++` is part of `gcc` which is the Gnu C Compilier.  It starts to get compilicated talking about what exactly is `avr-g++` vs `gcc`, far beyond the scope of this document, so don't worry too much about it.  It suffices to say that `avr-g++` is a free, open source compilier for code which needs to compile to a binary that an avr microcontroller can run.  It's not the only compilier, but it being free and open source means it can be included with the Arduino IDE, and likewise you can use it, without paying.  
@@ -218,4 +230,4 @@ The other options aren't consumed directly by avr-g++ and are passed to the sub-
     `-I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard`
         Really you should read all files in all directories indicated by these steps are they are clearly important to compiling your code.  These are low-level definitions of variables, macros, and structures used by Arduino libraries.
     `/tmp/arduino_build_709419/sketch/Fade.ino.cpp`
-       This file is in the build directory for your project, created by `arduino-builder`, and a ".cpp" extension has been added to the ".ino".  Part of what `arduino-builder` does is rewrite your file so it's actually valid C++.  Sketches themselves are not a complete program, nor strictly valid C++, but make up part of a larger program which gets compiled.  We'll see that as we move along.  When you write code outside the ecosystem, it will have to be valid C++, so it's important to see where and how this step occurs between "sketch" and code.
+       This file is in the build directory for your project, created by `arduino-builder`, and a ".cpp" extension has been added to the ".ino".  Part of what `arduino-builder` does is rewrite your file so it's actually valid C++.  Sketches themselves are not a complete program, nor strictly valid C++, but make up part of a larger program which gets compiled.  We'll see that as we move along.  When you write code outside the ecosystem, it will have to be valid C++, so it's important to see where and how this step occurs between "sketch" and code.  See :ref:`arduino_builder_preproc` for some on this.

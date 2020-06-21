@@ -119,6 +119,7 @@ Dump perfs summary
 
     .. literalinclude:: arduino_build_dump_perfs.txt
 
+I think my bank code is in there.
 
 Compile
 =======
@@ -182,11 +183,21 @@ Let's look at the build directory `/tmp/arduino_build_709419`, and specifically 
 
 Look at build.options.json and include.cache, but we're going to skip to the "sketch" directory, where there are 3 files:
     
+::
+
     Fade.ino.cpp
     Fade.ino.cpp.d
     Fade.ino.cpp.o
 
+.. _arduino_builder_preproc:
+
+Sketch Preprocessing
+====================
+
 `arduino-builder` converted the sketch into valid C++ by automatically making changes to the .ino file.  Take a look at Fade.ino.cpp.
+
+.. literalinclude:: Fade.ino.cpp
+
 
 We see the additions of `#line` directives, along with function declarations for `setup()` and `loop()`.  
 
