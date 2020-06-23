@@ -1,3 +1,5 @@
+.. _start_from_ide:
+
 =============================
 Starting from the Arduino IDE
 =============================
