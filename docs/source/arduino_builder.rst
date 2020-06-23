@@ -215,4 +215,4 @@ This is covered in gerenal by learning C++.  I'll add here that C++ required you
 
 Now that we have valid C++ thanks to the arduino-builder pre-processing the .ino files, we can move to the topic of compilation.  This will cover the rest of the files created during this process.
 
-If you got here from the IDE as a starting point, click :ref:`command_line_compilation_ide` to head back there.
+Head over to :ref:`command_line_compilation` to keep moving forward.

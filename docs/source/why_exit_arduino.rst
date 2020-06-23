@@ -1,15 +1,15 @@
 =================
 Why Exit Arduino?
 =================
-My goal with "Exiting Arduino" is to give people who are curious a jumping off point into what the hardware is actually doing, and how you actually program a microcontroller, and what that programming actually means.  
+"Exiting Arduino" exists to give curious people a jumping off point into what the hardware is doing, how they can program a microcontroller, and what that programming actually means.  
 
-Arduino is disgned for people who don't have any background in programming to get into hardware.  Take the verify button.  It actually *compiles* the software.  Why not call it "compile"?  
+Arduino designed their ecosystem for people who don't have any background in programming, and I think they've done an ecellent job.  Take the verify button.  It actually *compiles* the software.  Why not call it "compile"?  
 
-I think calling the compile button "verify" good, intentional design.  Using familiar terminology is part of making hardware accessible.  At what age do you understand what "verify" means?  How about "compile"?  And how much older would you need to be to know that "compile" has a specific meaning in programming?  Do you know the difference between a compiled language and an interpretted one?  
+I think calling the compile button "verify" good, intentional design which understands it's target audience.  Using familiar terminology is part of making hardware accessible to everyone.  At what age do you understand what the word "verify" means?  How about "compile"?  And how much older to know that "compile" has a specific meaning in programming a computer, let alone what compiling a program actually does?  Do you know the difference between a compiled language and an interpretted one?  
 
-They've done an amazing job making hardware accessible.  I love Arduino, and still use it for projects.  You don't need to read Instruction sets, tool chains, or datasheets.  But what if you want to?
+The foks at Arduino continue to do an amazing job making hardware accessible.  I love Arduino, and still use it for projects.  You don't need to read Instruction Sets or data sheets or fool around with tool chains.  But what if you want to?
 
-I want to provide a bridge from Arduino to the more general space of programming firmware that the curious can cross if they wish.  It's a two-way bridge, really.  I think the more you know about what's going on, the more you can do with the tools which automate it for you.
+"Exiting Arduino" provides a bridge from the Arduino IDE and ecosystem into the general space of programming firmware.  It's a two-way bridge, really, as accessing both side of the river gives you more options.  I think the more you know about what's going on, the more you can do with the tools which automate it for you.
 
 So, let's strip away the parts that are Arduino, and the parts which are more general to programming hardware.  You'll quickly see how much effort went into Arduino, and why it's so nice, especially since it's Free.  
 
