@@ -3,7 +3,7 @@
 =====================================
 Introduction to Computer Architecture
 =====================================
-A computer's architecture refers to how it will interpret 1s and 0s as instructions and data.  Binary code is just a long list of 1s and 0s.  The architecture defines how to interpret the 1s and 0s into instructions.  We'll detail this below, don't worry about understanding any details just yet.  
+A computer's architecture refers to how it will interpret 1s and 0s as instructions and data.  Binary code is just a long list of 1s and 0s.  The architecture defines how to interpret the 1s and 0s into instructions.  We'll detail this below, don't worry about understanding any details just yet.  By the end of this section, I'm expecting you to be able to look at a real instruction set and understand the contents.  You won't be an expert, but it should look familiar enough to get though.
 
 A binary is literally just a bunch of 1s and 0s, something like
 
@@ -473,7 +473,7 @@ How many bits do we need for input 1 and input 2?  Well, we have 3 registers rig
     [oooo][ii][ii]
 
 
-We don't need to update the op-codes for the other operations right no, other than add '00' to the beginning so they are 4 bits.  Note that we have to change the *behavior* of the other operations, or at least define them better, becuase they were originally designed to only handle 1 bit inputs.  
+We need to update the op-codes for the other operations to be 4 bits, so let's just add '00' to the beginning of each.  Note that we have to change the *behavior* of the other operations, or at least define them better, becuase they were originally designed to only handle 1 bit inputs.  
 
 The intial 4 operations only took *values* as inputs.  But each operation is defined only in terms of 1 bit values, and now we have 2 bit values.
 
@@ -485,25 +485,27 @@ Rather than go futher into the details of specific operations here, I'll cover t
 
 Saving Results
 --------------
-Ok, took a while, but we're finally here.
+Ok, took a while, but we're finally here.  Let's talk about getting the output from our operations.
 
-We established a Z register, and we saw that we can move values from it to A and B.  
+We established a Z register, and we saw that we can move values from it to A and B.  We'll use that as the result.
 
-Z is going to be a very special register, however.  It will always be the result from the last instruction, meaning based on the instruction op code and inputs, it will store the output. 
+Z is going to be a very special register, however.  It will always be the result from the last instruction, meaning based on the instruction op code and inputs, the value in Z will *always* be something, since the last operation always did something.  But it will also be changing during certain operations.  MOV and STO don't change it, but the rest do.
+
+Basically, Z is wired to the parts of the processor which actually do the operations.  This, again, is just a bunch of logic gates, and will be covered elsewhere.  Right now all our registers at 2 bits wide, and our operations can handle 2 bit inputs, but we only specific single bit outputs.  Let's assume the outputs of the logic operations can always be as big as the inputs.  Again, I'll cover this in a Digital Locic section at some point.
 
 Back in :ref:`instructions` we saw all the possible inputs and outputs, but we didn't see how to use the output.  Now we always will have access to the output of the last instruction as the *value* in register Z.  We decided that, we selected Z as the register which stores the Output from each instruction.  Z now has a *special function*, and is referred to as a *special funtion register*.  `Who said naming things is hard <https://martinfowler.com/bliki/TwoHardThings.html>`_?
 
 Special Function Registers
 ==========================
-The processor itself controls what's in Z.  And we're going to make it read only.  This is so we don't accidentally change the output from an operation before we save the result of that operation.  
+The processor itself controls what's in Z.  And we, as the designers, are going to make it read only.  This is so we (or anyone else) won't accidentally change the output from an operation before we save the result of that operation.  
 
 We will not allow putting anything in Z, we will only allow reading from it.  STO 1 Z won't work, and MOV A Z won't work, but MOV Z B will.  
 
-We've defined a set of access controls on the register Z that the processor enforces.  We haven't said how, that's beyond the scope of this guide, but it's just some set of logic operations the processor manages, a bunch of transitors and logic gates which make a stupid decisison.  However, we know also have defined a set of *illegal instructions*.  Z cannot be the second argument in a STO or MOV instruction.  We can communicate this back to whoever is designing a compilier for our architecture.  Never create these instructions!  They will fail!
+We've defined a set of access controls on the register Z that the processor enforces.  We haven't said how, that's beyond the scope of this guide, but it's just some set of logic operations the processor manages, a bunch of transitors and logic gates which make a decisison.  Since op codes are binary, and so are register addressing, you can see how it would be possible to identify an instruction which attempted to write to Z.
 
-How big is Z, as in how many bits does it have?  Right now, the output from all our instructions is just one bit.  Z could be only 1 bit.  That seems out of line with the definition of our other registers, but we can just assume that's the case.  We'll have to make sure that we pay attention to where bits are going in any case, since Z can be loaded in to A or B. 
+Now we also have defined a set of *illegal instructions*.  Z cannot be the second argument in a STO or MOV instruction.  We can communicate this back to whoever is designing a compilier for our architecture.  Never create these instructions!  They will fail!
 
-It probably makes sense to make all memory locations the same size.  But we also need to pay attention to where all the bits are going.   We'll leave that alone for now, it's like all other things here:  Make a decision, and make sure all other operations respect that decision.
+It probably makes sense to make all memory locations the same size.  We don't strictly have to, but then we need to pay attention to the size of the data we're loading from registers which aren't the same size.  We also need to pay attention to where all the bits are going.   We'll leave that alone for now, it's like all other things here:  Make a decision, and make sure all other operations respect that decision.
 
 Programming with Registers
 ==========================
@@ -530,7 +532,7 @@ I could also AND 1 and 0 and store that in B
     AND 1 0  # Z becomes 0
     MOV Z B  # 0 is moved into B
 
-But how to I AND the results I stored in A and B?  A and B are both registers, so I need an operation that takes two register addresses as it's inputs.  Right now I only have one instruction which takes two addresses as inputs, MOV.  So while I can store the result of the last operation, and I can access the result, I can't actually *use* the result.
+But how to I AND the results I stored in A and B?  A and B are both registers, so I need an operation that takes two register addresses as it's inputs.  Right now I only have one instruction which takes two addresses as inputs, MOV.  So while I can store the result of the last operation, and I can access the result in some fashion (i.e. MOV), I can't actually *use* the result.
 
 Well, we need more operations, the ones I have are not sufficient.   Good thing we added extra bits to op codes already, and that we have sufficient bits in `[input 1]` and `[input 2]` to manage all our register addresses. So the Instruction format can stay exactly the same: 4 bit op codes, and 2 inputs, each 2 bits.
 
@@ -552,10 +554,10 @@ We could assign these instructions similar to the previous ones which acted only
 =======  =========  ==
 Op code  Operation 
 =======  =========  ==
- 0000      NOT      # Immediate Invert
- 0001      AND      # Immediate And
- 0010      OR       # Immediate Or
- 0011      XOR      # Immediate XOr
+ 0000      NOT      # Direct Invert
+ 0001      AND      # Direct And
+ 0010      OR       # Direct Or
+ 0011      XOR      # Direct XOr
  0100      STO      # Store
  0101     AND_R     # Indirect And
  0110     OR_R      # Indirect Or
@@ -581,11 +583,11 @@ This is not the only way to solve this problem.  I could make all the instructio
 
 We lose the "fast" instructions which don't requre registers to operate on known values for the benefit of having a smaller instruction set.  
 
-It's a trade off, do you expect to do more "fast" (also called "immediate" instructions) where the values are stored in the program, or do you need to to more chained operations which use the results from previous calcualtions?
+It's a trade off, do you expect to do more "fast" (also called "direct" or maybe "immediate" instructions) where the values are stored in the program, or do you need to to more chained operations which use the results from previous calcualtions?
 
 In both cases, our processor is capable of doing operations on known values, e.g. "And the values 1 and 0", but the assembly and machine code now always requires to two store instructions, then an AND instruction.  We can no longer do a direct AND 1 0, which is faster since it's one instruction.
 
-Let's keep these two modes in mind, immediate and indirect.
+Let's keep these two modes in mind, direct (as in direcly o values) and indirect (on the values stored in registers).
 
 Recall what we're doing here.  We're making a bunch of design decisions about our architecture that determine how a binary string, a list of 1s and 0s, will be interpretted.  Things are getting complicated, and we have had to make a number of decisions which impact the format of our instructions, and therefore the format of the binary code that will execute on our architecture.  These decions also impact how many instructions are required need to perform a task.  
 

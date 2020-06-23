@@ -15,6 +15,7 @@ Welcome to exiting_arduino's documentation!
    arduino_builder
    cli_compile
    architecture_introduction
+   programming_language
    compilation
 
 Indices and tables
