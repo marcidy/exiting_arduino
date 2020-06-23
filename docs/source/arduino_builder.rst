@@ -199,18 +199,20 @@ Sketch Preprocessing
 .. literalinclude:: Fade.ino.cpp
 
 
-We see the additions of `#line` directives, along with function declarations for `setup()` and `loop()`.  
+We see the additions of `#line` directives, along with *function prototypes* for `setup()` and `loop()`.  
 
 `C++ directives <http://www.cplusplus.com/doc/tutorial/preprocessor/>`_ covers what the `#line` does as well as cover everything you see that starts with a `#`.
 
-The added function declarations are required as part of writing C++:
+The added function function prototypes are required as a rule of writing C++:
 
 ::
 
     void setup();
     void loop();
 
-This is covered in gerenal by learning C++.  I'll add here that C++ required you to declare the type of all variables _before_ defining the variabled.  Here we are telling the compilier that "setup" and "loop" are functions which doesn't return anything (void).
+This is covered in gerenal by learning C++.  I'll add here that C++ required you to declare the type of all variables *before* using the variable.  Here we are telling the compilier that "setup" and "loop" are functions which doesn't return anything (void).  This guide, or at least this part of it, isn't concerned with learning C/C++, but there's plenty of resources for that.  `arduino-builder` is doing a bit of extra work for us at this stage so that writing *sketches* is a bit easier than writing valid C++.  Not much easier, but slightly easier.
 
 
 Now that we have valid C++ thanks to the arduino-builder pre-processing the .ino files, we can move to the topic of compilation.  This will cover the rest of the files created during this process.
+
+If you got here from the IDE as a starting point, click :ref:`command_line_compilation_ide` to head back there.

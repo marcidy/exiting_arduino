@@ -78,15 +78,19 @@ Lot's more output!  This is a combination of commands tht were run and output fr
   Using board 'uno' from platform in folder: /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2
   Using core 'arduino' from platform in folder: /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2
 
-I'm on a linux machine so `/home/marcidy/arduino-1.8.10` are the path to the arduino builder tool.  This tool is a program that comes with the arduino IDE to collect information about the code you want to compile.  It uses information from things you've set in the IDE (like the board) and libraries installed through the IDE.  
+I'm on a Linux machine so `/home/marcidy/arduino-1.8.10` are the path to the arduino builder tool.  This tool is a program that comes with the arduino IDE to collect information about the code you want to compile.  It uses information from things you've set in the IDE (like the board) and libraries installed through the IDE.  
 
 I'm going to skip this tool in this section since the goal of this tutorial is to not use arduino tools, but there's a more in-depth explanation here: :ref:`arduino_builder`
 
+.. _command_line_compilation_ide:
+
 Command Line Compilation
 ========================
-At this stage we have a valid C++ file output from :ref:`arduino_builder` preprocessing the sketch.
+At this stage we have a valid C++ file output from :ref:`arduino_builder` preprocessing the sketch.  We saw in that section that the IDE actually executes a number of commands not echoed to the screen.
 
-I've expanded the next lines to split out all the options passed to avr-g++.
+.. literalinclude:: arduino_build_compile_compressed.txt
+
+We'll go line by line.  I've expanded the first to split out all the options passed to avr-g++.
 
 .. code:: bash
     
@@ -114,12 +118,13 @@ I've expanded the next lines to split out all the options passed to avr-g++.
     -DARDUINO_AVR_UNO
     -DARDUINO_ARCH_AVR
     -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino
-    -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_709419/sketch/Fade.ino.cpp
+    -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard 
+    /tmp/arduino_build_709419/sketch/Fade.ino.cpp
     -o /dev/null
 
-Here we see the beginning of the tool-chain for avr.   
+Here we see the beginning of the compilation tool-chain for avr.
 
-Quick pause to explain what's happening.  Your computer where you write arduino code is probably Windows, Mac, or linux, and most likely runs an Intel or AMD processor. There's nothing fundamentally different from those processors and an avr.  You can compile code for them, and you end up with a binary file which they can execture.  This is all explained in detail in :ref:`compilation_primer`.  
+Quick pause to explain what's happening.  Your computer where you write arduino code is probably Windows, Mac, or Linux, and most likely runs an Intel or AMD processor. There's nothing fundamentally different from those processors and an avr.  You can compile code for them, and you end up with a binary file which they can execture.  This is all explained in detail in :ref:`compilation_primer`.  
 
 However, key to what we are doing, is that we are not compiling for your computer.  We are compiling for a completely difference processor.  This is called `cross compiling`.  Our computer is the host where we are executing commands to compile for the target machine, in this case an Arduino Uno which has an Atmel AVR ATMega328p microcontroller.
 
@@ -127,9 +132,17 @@ Let's look at this command in more depth.
 
 avr-g++
 -------
-This is where you need to start paying close attention.  You'll need to understand which options passed to this command will change based on the chip you are programming.  Once you use this command, you are outside of the Arduino build environment and need valid C++ (ie not a .ino file) and which arduino specific libraries from Arduino are used.  We'll stick to using the arduino libraries for now, and in a different section look at how to replace these.  See :ref:`arduino_builder_preproc` to see how the sketch gets converted too valid C++ in the build directory.
+This is where you need to really start paying close attention.  
 
-`avr-g++` is part of `gcc` which is the Gnu C Compilier.  It starts to get compilicated talking about what exactly is `avr-g++` vs `gcc`, far beyond the scope of this document, so don't worry too much about it.  It suffices to say that `avr-g++` is a free, open source compilier for code which needs to compile to a binary that an avr microcontroller can run.  It's not the only compilier, but it being free and open source means it can be included with the Arduino IDE, and likewise you can use it, without paying.  
+You need to understand which options passed to this command will change based on the chip you are programming.  Once you use this command, you are outside of the Arduino build environment and need valid C++ (ie not a .ino file) and where all the libraries you use are located.  Especially the libraries you didn't know you used, like some libraries which ship with the Ardiuno IDE.  
+
+Not that we need to stick to the Arduino libraries, but we will for now.  Just understand they are libraries going forward, and we compile against them like any other library.  In a different section look at how to replace these.  
+
+See :ref:`arduino_builder_preproc` to see how the sketch gets converted too valid C++ in the build directory.
+
+`avr-g++` is part of `gcc` which is the Gnu C Compilier.  It gets a bit compilicated talking about what exactly is `avr-g++` vs `gcc`, so don't worry too much about it.  It suffices to say that `avr-g++` is a free, open source compilier for code which needs to compile to a binary that an avr microcontroller can run.  It's not the only compilier, but it being free and open source means it can be included with the Arduino IDE, and likewise you can use it, without paying.  
+
+If you want a better idea of what it means for a binary to be run by a microcontroller, check out :ref:`architecture_introduction`.
 
 The compilier will read source files, and convert what is written in those source files into a binary executable. A natural question is "how?", which of course has many layers and is complicated, and discussed in :ref:`compilation_primer`.
 
@@ -140,7 +153,7 @@ However, it is critical to know (not understand just yet) that "compilation" is 
     3. Assembly
     4. Linking
 
-Note that the Pre-processing step here is not the same preprocessing that `arduino_builder` does.  It's preprocessing related to C++.
+Note that the first step "Pre-processing" mentioned here is not the same pre-processing that `arduino_builder` does.  `arduino_builder` did it's own pre-processing, collecting data about the project stored by the IDE, and converted that into data used by these commands.  This step is preprocessing related only to C++ source files.
 
 Let's look at the options passed to `avr-g++` and why, and note these steps in order.  Oh look, even though we are compiling, one of the steps to compiling is compiling.  It's more appropriate to think of "compiling a program" as a 4 step process, where one of those steps is "compile the code to assembly".
 
@@ -212,7 +225,7 @@ The relevent `avr-g++` options invoked by Arduino:
     `-E`
         Preprocess only; do not compile, assemble or link.  This seems at odds with `-c`, however when used together it means "First preprocess only, then compile and and assemble only", which is steps 1 through 3 of compilation.
     `-o <filename>`
-        Output the results into <filename>.  Here, the /dev/null is a special file on linux which looks like a file, but really just discards the output.  Seems weird, but what's actually happening is that the useful output is produced by sub-processes.
+        Output the results into <filename>.  Here, the /dev/null is a special file on Linux which looks like a file, but really just discards the output.  Seems weird, but what's actually happening is that the useful output is produced by sub-processes.
 
 The other options aren't consumed directly by avr-g++ and are passed to the sub-processes that avr-g++ uses.  Let's take a look at some of them.
 
