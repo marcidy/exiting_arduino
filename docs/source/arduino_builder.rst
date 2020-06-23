@@ -1,4 +1,4 @@
-.. _arduino-builder:
+.. _arduino_builder:
 
 ===============
 Arduino Builder

@@ -78,11 +78,11 @@ Lot's more output!  This is a combination of commands tht were run and output fr
 
 I'm on a linux machine so `/home/marcidy/arduino-1.8.10` are the path to the arduino builder tool.  This tool is a program that comes with the arduino IDE to collect information about the code you want to compile.  It uses information from things you've set in the IDE (like the board) and libraries installed through the IDE.  
 
-I'm going to skip this tool in this section since the goal of this tutorial is to not use arduino tools, but there's a more in-depth explanation here: :ref:`arduino-builder`
+I'm going to skip this tool in this section since the goal of this tutorial is to not use arduino tools, but there's a more in-depth explanation here: :ref:`arduino_builder`
 
 Command Line Compilation
 ========================
-At this stage we have a valid C++ file output from :ref:`arduino-builder` preprocessing the sketch.
+At this stage we have a valid C++ file output from :ref:`arduino_builder` preprocessing the sketch.
 
 I've expanded the next lines to split out all the options passed to avr-g++.
 
@@ -137,6 +137,8 @@ However, it is critical to know (not understand just yet) that "compilation" is 
     2. Compilation
     3. Assembly
     4. Linking
+
+Note that the Pre-processing step here is not the same preprocessing that `arduino_builder` does.  It's preprocessing related to C++.
 
 Let's look at the options passed to `avr-g++` and why, and note these steps in order.  Oh look, even though we are compiling, one of the steps to compiling is compiling.  It's more appropriate to think of "compiling a program" as a 4 step process, where one of those steps is "compile the code to assembly".
 
@@ -231,3 +233,6 @@ The other options aren't consumed directly by avr-g++ and are passed to the sub-
         Really you should read all files in all directories indicated by these steps are they are clearly important to compiling your code.  These are low-level definitions of variables, macros, and structures used by Arduino libraries.
     `/tmp/arduino_build_709419/sketch/Fade.ino.cpp`
        This file is in the build directory for your project, created by `arduino-builder`, and a ".cpp" extension has been added to the ".ino".  Part of what `arduino-builder` does is rewrite your file so it's actually valid C++.  Sketches themselves are not a complete program, nor strictly valid C++, but make up part of a larger program which gets compiled.  We'll see that as we move along.  When you write code outside the ecosystem, it will have to be valid C++, so it's important to see where and how this step occurs between "sketch" and code.  See :ref:`arduino_builder_preproc` for some on this.
+
+Notes:
+Where are these options used (like the -D stuff)
