@@ -166,5 +166,119 @@ The other options aren't consumed directly by avr-g++ and are passed to the sub-
     `/tmp/arduino_build_709419/sketch/Fade.ino.cpp`
        This file is in the build directory for your project, created by `arduino-builder`, and a ".cpp" extension has been added to the ".ino".  Part of what `arduino-builder` does is rewrite your file so it's actually valid C++.  Sketches themselves are not a complete program, nor strictly valid C++, but make up part of a larger program which gets compiled.  We'll see that as we move along.  When you write code outside the ecosystem, it will have to be valid C++, so it's important to see where and how this step occurs between "sketch" and code.  See :ref:`arduino_builder_preproc` for some on this.
 
-Notes:
-Where are these options used (like the -D stuff)
+
+Ctags
+-----
+
+Ctags is outside the scope of this guide, but you can read about it on line.  Basically it's a tool which creates an index of all the C++ "stuff" you are using, so it can be looked up and found by other tools.  The following step uses this file.  
+
+::
+
+    /home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++
+        -c
+        -g
+        -Os
+        -w
+        -std=gnu++11
+        -fpermissive
+        -fno-exceptions
+        -ffunction-sections
+        -fdata-sections
+        -fno-threadsafe-statics
+        -Wno-error=narrowing
+        -flto
+        -w
+        -x c++
+        -E
+        -CC
+        -mmcu=atmega328p
+        -DF_CPU=16000000L
+        -DARDUINO=10810
+        -DARDUINO_AVR_UNO
+        -DARDUINO_ARCH_AVR
+        -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino
+        -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard 
+        /tmp/arduino_build_709419/sketch/Fade.ino.cpp
+        -o /tmp/arduino_build_709419/preproc/ctags_target_for_gcc_minus_e.cpp
+
+The first invocation of avr-g++ preprocess the cpp file for use with ctags.  
+
+::
+
+    /home/marcidy/arduino-1.8.10/tools-builder/ctags/5.8-arduino11/ctags
+        -u
+        --language-force=c++
+        -f
+        -
+        --c++-kinds=svpf
+        --fields=KSTtzns
+        --line-directives 
+        /tmp/arduino_build_709419/preproc/ctags_target_for_gcc_minus_e.cpp
+
+This is the actual ctags tool running.  Again, we're going to ignore it.
+
+::
+
+    /home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++
+        -c
+        -g
+        -Os
+        -w
+        -std=gnu++11
+        -fpermissive
+        -fno-exceptions
+        -ffunction-sections
+        -fdata-sections
+        -fno-threadsafe-statics
+        -Wno-error=narrowing
+        -MMD
+        -flto
+        -mmcu=atmega328p
+        -DF_CPU=16000000L
+        -DARDUINO=10810
+        -DARDUINO_AVR_UNO
+        -DARDUINO_ARCH_AVR
+        -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino
+        -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard 
+        /tmp/arduino_build_709419/sketch/Fade.ino.cpp
+        -o /tmp/arduino_build_709419/sketch/Fade.ino.cpp.o
+       
+Ok, here we see an actual compilation step.  The input is the `.cpp` file and the output is a `.o` object file.  Had we more files, we'd see more lines indicating compilation of the individual files to object code.  
+
+It's time to start looking at what those options to avr-g++ actually mean.  Let's start from the bottom.
+
+::
+
+    -o /tmp/arduino_build_709419/sketch/Fade.ino.cpp.o
+
+The "-o" flag tells the program to produce a file with the name provided.
+
+::
+
+    /tmp/arduino_build_709419/sketch/Fade.ino.cpp
+
+This is the file being compiled. It's the input to the compiler.
+
+::
+
+    -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino
+    -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard 
+
+Remember the "-I" is for libraries.  Specifically "other files to include when compiling".  We need files in these directories becuase they are either explicitly in `#include` statements in our file, or are included by other files which have been included.  Let's look at what's included in Fade.ino.
+
+::
+
+    #include <Arduino.h>
+
+Only `Arduino.h`.  Hmm.  If you look in the directories mentioned above, you'll find this file.
+
+Well, if your more curious, checkout :ref:`arduino_libraries` to dig deeper through it and it's includes.  This part of the guide is just going to focus on command line compilation.  If you are curious where all the definitions are for the things which are otherwise magically working, that's a good place to look.
+
+
+::
+
+    -mmcu=atmega328p
+    -DF_CPU=16000000L
+    -DARDUINO=10810
+    -DARDUINO_AVR_UNO
+    -DARDUINO_ARCH_AVR

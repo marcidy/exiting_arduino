@@ -4,7 +4,7 @@
 Arduino Builder
 ===============
 
-    'arduino-builder' is a tool provided along with the Arduino IDE.  Let's take a look at how the command is invoked when the commpile button is pressed:
+'arduino-builder' is a tool provided along with the Arduino IDE.  Let's take a look at how the command is invoked when the commpile button is pressed:
     
 ::
     
@@ -15,15 +15,15 @@ Arduino Builder
         Using core 'arduino' from platform in folder: /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2
     
 
-    These are two distinct steps goverend by the `arduino-build` command: first gather information about the project using `-dump-perfs` and then use that information to compile the code using `-compile`.  Let's explore both in detail.
+These are two distinct steps goverend by the `arduino-build` command: first gather information about the project using `-dump-perfs` and then use that information to compile the code using `-compile`.  Let's explore both in detail.
 
 Dump Perfs
 ==========
-    This step gathers information stored in settings from the Arduino IDE and from the code being compiled.
+This step gathers information stored in settings from the Arduino IDE and from the code being compiled.
 
-    Expanding the first line so it's more readable:
+Expanding the first line so it's more readable:
     
-   ::
+::
 
       /home/marcidy/arduino-1.8.10/arduino-builder
         -dump-prefs
@@ -50,9 +50,9 @@ Dump Perfs
         -prefs=runtime.tools.avrdude-6.3.0-arduino17.path=/home/marcidy/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17
         -verbose /home/marcidy/arduino-1.8.10/examples/01.Basics/Fade/Fade.ino
     
-    Again since I'm using linux, the `/home/marcidy/arduino-1.8.10/` is the path to the programs that come with the Arduino IDE.  They'll be different for everyone but the idea here is to learn to read this output and deconstruct it into its parts, and discover from those parts what is happening. 
+Again since I'm using linux, the `/home/marcidy/arduino-1.8.10/` is the path to the programs that come with the Arduino IDE.  They'll be different for everyone but the idea here is to learn to read this output and deconstruct it into its parts, and discover from those parts what is happening. 
     
-    The command has a number of repeated options like `-hardware` and `-tools` which are telling the program where to look for files important to compiliation.  Let's go over the options.
+The command has a number of repeated options like `-hardware` and `-tools` which are telling the program where to look for files important to compiliation.  Let's go over the options.
 
 
 Generic options
@@ -113,54 +113,59 @@ Toolchain options
 
 Dump perfs summary
 ------------------
-    From this command, we see that the tool has determined what hardware we are using and what libraries and tools are required for the project.  We also see where intermediate steps are saved on the machine, specifically in the `-build-path` and `-build-cache` locations.  We'll be investigating those in a separate section.  Pay close attention to the values used when using the IDE, they change, even for the same project, and they get deleted with the program exits.
+From this command, we see that the tool has determined what hardware we are using and what libraries and tools are required for the project.  We also see where intermediate steps are saved on the machine, specifically in the `-build-path` and `-build-cache` locations.  We'll be investigating those in a separate section.  Pay close attention to the values used when using the IDE, they change, even for the same project, and they get deleted with the program exits.
 
-    If you run this command on it's own, you'll see a wealth of information.
+If you run this command on it's own, you'll see a wealth of information.
 
-    .. literalinclude:: arduino_build_dump_perfs.txt
+.. literalinclude:: arduino_build_dump_perfs.txt
+    :language: none
 
-I think my bank code is in there.
+Yikes, that's a lot.  I think my bank code is in there.  Well, you can peruse that if you want.  It's listing some programs it will use, options for those programs, and locations in the filesystem.
+
+This command, on it's own, doesn't modify anything.
 
 Compile
 =======
-    As you can guess from the name, compiling means 'putting it together'.  Specifically gathering all the necessary information and coverting the human readable source code into a machine readable binary.
+As you can guess from the name, compiling means 'putting it together'.  Specifically gathering all the necessary information and coverting the human readable source code into a machine readable binary.
 
-    :: 
+:: 
 
-        /home/marcidy/arduino-1.8.10/arduino-builder
-            -compile
-            -logger=machine
-            -hardware /home/marcidy/arduino-1.8.10/hardware
-            -hardware /home/marcidy/.arduino15/packages
-            -hardware /home/marcidy/Arduino/hardware
-            -tools /home/marcidy/arduino-1.8.10/tools-builder
-            -tools /home/marcidy/arduino-1.8.10/hardware/tools/avr
-            -tools /home/marcidy/.arduino15/packages
-            -built-in-libraries /home/marcidy/arduino-1.8.10/libraries
-            -libraries /home/marcidy/Arduino/libraries
-            -fqbn=arduino:avr:uno
-            -ide-version=10810
-            -build-path /tmp/arduino_build_709419
-            -warnings=none
-            -build-cache /tmp/arduino_cache_430568
-            -prefs=build.warn_data_percentage=75
-            -prefs=runtime.tools.arduinoOTA.path=/home/marcidy/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0
-            -prefs=runtime.tools.arduinoOTA-1.3.0.path=/home/marcidy/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0
-            -prefs=runtime.tools.avr-gcc.path=/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5
-            -prefs=runtime.tools.avr-gcc-7.3.0-atmel3.6.1-arduino5.path=/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5
-            -prefs=runtime.tools.avrdude.path=/home/marcidy/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17
-            -prefs=runtime.tools.avrdude-6.3.0-arduino17.path=/home/marcidy/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17
-            -verbose /home/marcidy/arduino-1.8.10/examples/01.Basics/Fade/Fade.ino
+    /home/marcidy/arduino-1.8.10/arduino-builder
+        -compile
+        -logger=machine
+        -hardware /home/marcidy/arduino-1.8.10/hardware
+        -hardware /home/marcidy/.arduino15/packages
+        -hardware /home/marcidy/Arduino/hardware
+        -tools /home/marcidy/arduino-1.8.10/tools-builder
+        -tools /home/marcidy/arduino-1.8.10/hardware/tools/avr
+        -tools /home/marcidy/.arduino15/packages
+        -built-in-libraries /home/marcidy/arduino-1.8.10/libraries
+        -libraries /home/marcidy/Arduino/libraries
+        -fqbn=arduino:avr:uno
+        -ide-version=10810
+        -build-path /tmp/arduino_build_709419
+        -warnings=none
+        -build-cache /tmp/arduino_cache_430568
+        -prefs=build.warn_data_percentage=75
+        -prefs=runtime.tools.arduinoOTA.path=/home/marcidy/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0
+        -prefs=runtime.tools.arduinoOTA-1.3.0.path=/home/marcidy/.arduino15/packages/arduino/tools/arduinoOTA/1.3.0
+        -prefs=runtime.tools.avr-gcc.path=/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5
+        -prefs=runtime.tools.avr-gcc-7.3.0-atmel3.6.1-arduino5.path=/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5
+        -prefs=runtime.tools.avrdude.path=/home/marcidy/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17
+        -prefs=runtime.tools.avrdude-6.3.0-arduino17.path=/home/marcidy/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17
+        -verbose /home/marcidy/arduino-1.8.10/examples/01.Basics/Fade/Fade.ino
     
-    Well, these are identical to the `-dump-perfs` invokation, so no need to reiterate their defintions.  The only difference here is that the program is actually going to compile the program using this information.  Compiliation is covered in the Quickstart.
+Well, these are identical to the `-dump-perfs` invokation, so no need to reiterate their defintions.  The only difference here is that the program is actually going to compile the program using this information.  Compiliation is covered in the Quickstart.
 
-    Running the command on it's own displays output related to compilation:
+Running the command on it's own displays output related to compilation:
 
-    .. literalinclude:: arduino_build_compile.txt
+.. literalinclude:: arduino_build_compile.txt
+    :language: none
 
 The lines like `===info |||` looks like it's information for the IDE itself.  Removing those, we see these commands run:
 
-    .. literalinclude:: arduino_build_compile_compressed.txt
+.. literalinclude:: arduino_build_compile_compressed.txt
+    :language: none
 
 Let's look at the build directory `/tmp/arduino_build_709419`, and specifically order the files by the time they were creates.
 
@@ -181,7 +186,18 @@ Let's look at the build directory `/tmp/arduino_build_709419`, and specifically 
     drwxr-xr-x  6 marcidy marcidy  4096 Jun 20 20:24 .
 
 
-Look at build.options.json and include.cache, but we're going to skip to the "sketch" directory, where there are 3 files:
+Look at build.options.json and include.cache, but we're going to look in the "preproc" and "sketch" directories.
+
+In the 'preproc' directory, there's just one file.
+
+.. literalinclude:: ctags_target_for_gcc_minus_e.cpp
+    :language: none
+
+This file looks a lot like the sketch, but with a change on the first line.  We'll, at least they give us a hint about what the file is for in the filename:  `ctags target for gcc -E`.
+
+You can google ctags to see what it's all about.  I'm not going to cover it here.
+
+In the 'sketch' directory, there are 3 files:
     
 ::
 
@@ -197,7 +213,7 @@ Sketch Preprocessing
 `arduino-builder` converted the sketch into valid C++ by automatically making changes to the .ino file.  Take a look at Fade.ino.cpp.
 
 .. literalinclude:: Fade.ino.cpp
-
+    :language: none
 
 We see the additions of `#line` directives, along with *function prototypes* for `setup()` and `loop()`.  
 

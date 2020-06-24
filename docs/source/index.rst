@@ -13,6 +13,7 @@ Welcome to exiting_arduino's documentation!
    why_exit_arduino
    start_from_ide
    arduino_builder
+   arduino_libraries
    cli_compile
    architecture_introduction
    programming_language
