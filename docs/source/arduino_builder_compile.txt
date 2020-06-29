@@ -1,0 +1,141 @@
+===info ||| Progress {0} ||| [0.00]
+===info ||| Progress {0} ||| [3.12]
+===info ||| Progress {0} ||| [3.47]
+===info ||| Progress {0} ||| [3.82]
+===info ||| Progress {0} ||| [4.17]
+===info ||| Progress {0} ||| [4.51]
+===info ||| Progress {0} ||| [4.86]
+===info ||| Using board '{0}' from platform in folder: {1} ||| [uno /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2]
+===info ||| Using core '{0}' from platform in folder: {1} ||| [arduino /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2]
+===info ||| Progress {0} ||| [5.21]
+===info ||| Progress {0} ||| [5.56]
+===info ||| Progress {0} ||| [5.90]
+===info ||| Progress {0} ||| [6.25]
+===info ||| Progress {0} ||| [6.34]
+===info ||| Progress {0} ||| [6.42]
+===info ||| Progress {0} ||| [6.51]
+===info ||| Progress {0} ||| [6.60]
+===info ||| Progress {0} ||| [9.72]
+===info ||| Progress {0} ||| [12.85]
+===info ||| Progress {0} ||| [15.97]
+===info ||| Progress {0} ||| [19.10]
+===info ||| Detecting libraries used... ||| []
+===info ||| Progress {0} ||| [22.22]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_709419/sketch/Fade.ino.cpp -o /dev/null
+===info ||| Progress {0} ||| [25.35]
+===info ||| Progress {0} ||| [28.47]
+===info ||| Generating function prototypes... ||| []
+===info ||| Progress {0} ||| [31.60]
+===info ||| Progress {0} ||| [0.00]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -flto -w -x c++ -E -CC -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_709419/sketch/Fade.ino.cpp -o /tmp/arduino_build_709419/preproc/ctags_target_for_gcc_minus_e.cpp
+/home/marcidy/arduino-1.8.10/tools-builder/ctags/5.8-arduino11/ctags -u --language-force=c++ -f - --c++-kinds=svpf --fields=KSTtzns --line-directives /tmp/arduino_build_709419/preproc/ctags_target_for_gcc_minus_e.cpp
+===info ||| Progress {0} ||| [100.00]
+===info ||| Compiling sketch... ||| []
+===info ||| Progress {0} ||| [103.12]
+===info ||| Progress {0} ||| [106.25]
+===info ||| Progress {0} ||| [109.38]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /tmp/arduino_build_709419/sketch/Fade.ino.cpp -o /tmp/arduino_build_709419/sketch/Fade.ino.cpp.o
+===info ||| Progress {0} ||| [112.50]
+===info ||| Progress {0} ||| [115.62]
+===info ||| Compiling libraries... ||| []
+===info ||| Progress {0} ||| [118.75]
+===info ||| Progress {0} ||| [121.88]
+===info ||| Progress {0} ||| [125.00]
+===info ||| Progress {0} ||| [128.12]
+===info ||| Progress {0} ||| [131.25]
+===info ||| Compiling core... ||| []
+===info ||| Progress {0} ||| [134.38]
+===info ||| Progress {0} ||| [137.50]
+===info ||| Progress {0} ||| [140.62]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -x assembler-with-cpp -flto -MMD -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_pulse.S -o /tmp/arduino_build_709419/core/wiring_pulse.S.o
+===info ||| Progress {0} ||| [143.75]
+===info ||| Progress {0} ||| [144.20]
+===info ||| Progress {0} ||| [144.20]
+===info ||| Progress {0} ||| [144.20]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/WInterrupts.c -o /tmp/arduino_build_709419/core/WInterrupts.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/hooks.c -o /tmp/arduino_build_709419/core/hooks.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_analog.c -o /tmp/arduino_build_709419/core/wiring_analog.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring.c -o /tmp/arduino_build_709419/core/wiring.c.o
+===info ||| Progress {0} ||| [145.54]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_digital.c -o /tmp/arduino_build_709419/core/wiring_digital.c.o
+===info ||| Progress {0} ||| [145.98]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_pulse.c -o /tmp/arduino_build_709419/core/wiring_pulse.c.o
+===info ||| Progress {0} ||| [146.43]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -c -g -Os -w -std=gnu11 -ffunction-sections -fdata-sections -MMD -flto -fno-fat-lto-objects -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/wiring_shift.c -o /tmp/arduino_build_709419/core/wiring_shift.c.o
+===info ||| Progress {0} ||| [146.88]
+===info ||| Progress {0} ||| [146.88]
+===info ||| Progress {0} ||| [146.88]
+===info ||| Progress {0} ||| [146.88]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/CDC.cpp -o /tmp/arduino_build_709419/core/CDC.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial1.cpp -o /tmp/arduino_build_709419/core/HardwareSerial1.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial.cpp -o /tmp/arduino_build_709419/core/HardwareSerial.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial0.cpp -o /tmp/arduino_build_709419/core/HardwareSerial0.cpp.o
+===info ||| Progress {0} ||| [146.98]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial2.cpp -o /tmp/arduino_build_709419/core/HardwareSerial2.cpp.o
+===info ||| Progress {0} ||| [147.01]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/HardwareSerial3.cpp -o /tmp/arduino_build_709419/core/HardwareSerial3.cpp.o
+===info ||| Progress {0} ||| [147.03]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/IPAddress.cpp -o /tmp/arduino_build_709419/core/IPAddress.cpp.o
+===info ||| Progress {0} ||| [147.06]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/PluggableUSB.cpp -o /tmp/arduino_build_709419/core/PluggableUSB.cpp.o
+===info ||| Progress {0} ||| [147.09]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/Print.cpp -o /tmp/arduino_build_709419/core/Print.cpp.o
+===info ||| Progress {0} ||| [147.11]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/Stream.cpp -o /tmp/arduino_build_709419/core/Stream.cpp.o
+===info ||| Progress {0} ||| [147.14]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/Tone.cpp -o /tmp/arduino_build_709419/core/Tone.cpp.o
+===info ||| Progress {0} ||| [147.16]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/USBCore.cpp -o /tmp/arduino_build_709419/core/USBCore.cpp.o
+===info ||| Progress {0} ||| [147.19]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/WMath.cpp -o /tmp/arduino_build_709419/core/WMath.cpp.o
+===info ||| Progress {0} ||| [147.22]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/WString.cpp -o /tmp/arduino_build_709419/core/WString.cpp.o
+===info ||| Progress {0} ||| [147.24]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/abi.cpp -o /tmp/arduino_build_709419/core/abi.cpp.o
+===info ||| Progress {0} ||| [147.27]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/main.cpp -o /tmp/arduino_build_709419/core/main.cpp.o
+===info ||| Progress {0} ||| [147.30]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++ -c -g -Os -w -std=gnu++11 -fpermissive -fno-exceptions -ffunction-sections -fdata-sections -fno-threadsafe-statics -Wno-error=narrowing -MMD -flto -mmcu=atmega328p -DF_CPU=16000000L -DARDUINO=10810 -DARDUINO_AVR_UNO -DARDUINO_ARCH_AVR -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino -I/home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/variants/standard /home/marcidy/.arduino15/packages/arduino/hardware/avr/1.8.2/cores/arduino/new.cpp -o /tmp/arduino_build_709419/core/new.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/wiring_pulse.S.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/WInterrupts.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/hooks.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/wiring.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/wiring_analog.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/wiring_digital.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/wiring_pulse.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/wiring_shift.c.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/CDC.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/HardwareSerial.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/HardwareSerial0.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/HardwareSerial1.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/HardwareSerial2.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/HardwareSerial3.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/IPAddress.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/PluggableUSB.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/Print.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/Stream.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/Tone.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/USBCore.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/WMath.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/WString.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/abi.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/main.cpp.o
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc-ar rcs /tmp/arduino_build_709419/core/core.a /tmp/arduino_build_709419/core/new.cpp.o
+===info ||| Archiving built core (caching) in: {0} ||| [/tmp/arduino_cache_430568/core/core_arduino_avr_uno_2bd201547ef1722ab59b0c23270fe17e.a]
+===info ||| Progress {0} ||| [147.32]
+===info ||| Progress {0} ||| [150.45]
+===info ||| Linking everything together... ||| []
+===info ||| Progress {0} ||| [153.57]
+===info ||| Progress {0} ||| [156.70]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc -w -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o /tmp/arduino_build_709419/Fade.ino.elf /tmp/arduino_build_709419/sketch/Fade.ino.cpp.o /tmp/arduino_build_709419/core/core.a -L/tmp/arduino_build_709419 -lm
+===info ||| Progress {0} ||| [159.82]
+===info ||| Progress {0} ||| [162.95]
+===info ||| Progress {0} ||| [166.07]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-objcopy -O ihex -j .eeprom --set-section-flags=.eeprom=alloc,load --no-change-warnings --change-section-lma .eeprom=0 /tmp/arduino_build_709419/Fade.ino.elf /tmp/arduino_build_709419/Fade.ino.eep
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-objcopy -O ihex -R .eeprom /tmp/arduino_build_709419/Fade.ino.elf /tmp/arduino_build_709419/Fade.ino.hex
+===info ||| Progress {0} ||| [169.20]
+===info ||| Progress {0} ||| [172.32]
+===info ||| Progress {0} ||| [175.45]
+/home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-size -A /tmp/arduino_build_709419/Fade.ino.elf
+===info ||| Sketch uses {0} bytes ({2}%%) of program storage space. Maximum is {1} bytes. ||| [1144 32256 3]
+===info ||| Global variables use {0} bytes ({2}%%) of dynamic memory, leaving {3} bytes for local variables. Maximum is {1} bytes. ||| [13 2048 0 2035]

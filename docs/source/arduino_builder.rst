@@ -157,15 +157,15 @@ As you can guess from the name, compiling means 'putting it together'.  Specific
     
 Well, these are identical to the `-dump-perfs` invokation, so no need to reiterate their defintions.  The only difference here is that the program is actually going to compile the program using this information.  Compiliation is covered in the Quickstart.
 
-Running the command on it's own displays output related to compilation:
-
-.. literalinclude:: arduino_build_compile.txt
-    :language: none
+Running the command on it's own displays output related to compilation.
 
 The lines like `===info |||` looks like it's information for the IDE itself.  Removing those, we see these commands run:
 
-.. literalinclude:: arduino_build_compile_compressed.txt
+.. literalinclude:: arduino_builder_compile_clean.txt
     :language: none
+
+
+Lot's of output, but it falls into specific classes of commands which are further covered in :ref:`command_line_compilation`.
 
 Let's look at the build directory `/tmp/arduino_build_709419`, and specifically order the files by the time they were creates.
 

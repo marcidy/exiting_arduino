@@ -217,6 +217,23 @@ The first invocation of avr-g++ preprocess the cpp file for use with ctags.
 
 This is the actual ctags tool running.  Again, we're going to ignore it.
 
+Libraries and #includes
+-----------------------
+
+Compilation requires knowing things like the types of all variables, the types of data returned by functions, the types of all arguments to all functions (they are just variables, after all), and the order of the arguments in each function.
+
+Note that this isn't the same thing as knowing the definition of each function or the value of each variable.  Type information tells the compilier how to interpret some binary strings like `11011001` as an integer or a memory address.  
+
+With this information, the compilier can do two things:
+    1. Check that we don't accidentally try to use functions or variables inconsistently, ie use an address where a value is required
+    2. Create the right instruction, as some times we want to do the same operation, but on different types.
+
+To get a better idea of this, read through :ref:`architecture_introduction` and why sometimes we want to do something like `AND 1 0` which is with values and other times we want to do `AND A B` which is with values stored in memory.
+
+For any specific file being compiled, we need to have those definitions either in the file, or in a file referenced by a `#include` directive.  Then we need to tell the compiler where it should look for the files.
+
+Let's see how that's handled.
+
 ::
 
     /home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-g++
@@ -274,11 +291,88 @@ Only `Arduino.h`.  Hmm.  If you look in the directories mentioned above, you'll 
 
 Well, if your more curious, checkout :ref:`arduino_libraries` to dig deeper through it and it's includes.  This part of the guide is just going to focus on command line compilation.  If you are curious where all the definitions are for the things which are otherwise magically working, that's a good place to look.
 
+The take away from here is that you need to tell the compiler where to look for files that you include in the compilation.  If it can't find a file mentioned in an `#include`, it will fail.  There's no magic about where the compilier is going to look for files.
+
+Build Variables
+---------------
+
+If you went through :ref:`arduino_libraries`, you learned where the libraries will make compiliation decisions based on the target hardware.  We can pass variables into the pre-processing step of compilation by using the `-D` option on the command line
 
 ::
 
-    -mmcu=atmega328p
     -DF_CPU=16000000L
     -DARDUINO=10810
     -DARDUINO_AVR_UNO
     -DARDUINO_ARCH_AVR
+
+By setting build variables on the command line, we can make decisions about what code to include and how to implement code for different architectures, and the compilier will only include the code relevent for our architecture.
+
+For example, `-DF_CPU` sends the default clock frequency of the target.  Some boards at 8MHz, some are 16MHz, etc.  This extremely important for things like serial ports and other communication.  Now any code which requires specific timing, like a 9600 baud rate (which means 9600 bits/s), we can write code which can know exactly how many instruction cycles it needs to maintain that baud rate.  CPUs don't have any knowledge of time, and difference processors can do more or less amount of work in a given amount of time.  They work in a cycle, and the CPU clock frequency tells the processor how long a cycle is.  Once it has this information, it can convert back and forth between cycles and time.
+
+There's nothing particularly special about build variabled, they provide a very useful way to pass information into the compiliation process via setting values that will be used in preprocessing directives.  
+
+So we need to do some work to tell the compilier exactly whwat code will work on the target architecture, both when specifying on the command line, and in the code itself.  A major example for that is pin assignments, since all MCUs don't have the same pins.  Using switches on the command line we can tell the compilier which board we're using, and define the pins list in a file that is specific to the board for which we are compiling.
+
+
+Linking
+=======
+Once the compilier has found all the necessary inputs and compiled them, it assembles a single file.  Without going into the details, this means it has taken all the different functions which have been compiled to target specific assembly code and aranged them into a single file on the host operating system.  It has made a lot of decisions behind the scenes, like where to place each function, which is now just a list of machine instructions.
+
+Looking at the command which does the linking, we can see the inputs and outputs fromm that command.
+
+::
+
+    /home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/avr-gcc
+        -w
+        -Os
+        -g
+        -flto
+        -fuse-linker-plugin
+        -Wl,--gc-sections
+        -mmcu=atmega328p
+        -o /tmp/arduino_build_709419/Fade.ino.elf 
+        /tmp/arduino_build_709419/sketch/Fade.ino.cpp.o 
+        /tmp/arduino_build_709419/../arduino_cache_430568/core/core_arduino_avr_uno_2bd201547ef1722ab59b0c23270fe17e.a
+        -L/tmp/arduino_build_709419
+        -lm
+
+We see that a different command as been invoked, `avr-gcc`. 
+
+The output of linking is an `.elf` file, which stands for 'executable and linkable format.  You can read more about it at `Wikipedia <https://en.wikipedia.org/wiki/Executable_and_Linkable_Format>`_.  This file contains more information that what is required to run the program.  It also has metadata which explains how to interpret different sections of the file.  This file cannot be directly interpretted by the target architecture as a binary, but cains all the information needed to do so.  It's a representation of the firmware, but not yet the firmware we are going to load onto the processor.
+
+The `-L` option tells the linker where to find object code that has been compiled elsewhere. While that sounds similar to the `-I` directive above, the files passed to `-L` must have been already compiled for the target architecture.  These are also libraries, but can be referred to as _shared_ libraries, which isn't too relevent for this guide.  They are shared in the sense that all programs on a machine can share them without including them specifically, so they can be compiled once and saved, and then any program can link to them.  It makes far more sense when programming on a machine capable of running multiple programs than for an Arduino target.  
+
+
+`'-l` is another way to specify code to include in the program.  It takes abbreviated names for system libraries.  System libraries are part of the language which are included with the lanauge, but not necessarily included in compilation without explicit request.  IF you've heard of the standard library, which is always included, that's called `libc`.  The math library is called `libm`'.  With the `-l` option, we can drop the 'lib' prefix.  So here we are telling the linker to include the math library.  The standard library is always included.
+
+So these options tell the linker what to link together:
+
+::
+
+        /tmp/arduino_build_709419/sketch/Fade.ino.cpp.o
+        /tmp/arduino_build_709419/../arduino_cache_430568/core/core_arduino_avr_uno_2bd201547ef1722ab59b0c23270fe17e.a
+        -L/tmp/arduino_build_709419
+        -lm
+
+
+The `arduino_cache_430568` directory caches, or saves, the output from previous steps, and we can re-use those results without haveing to recompile files which haven't changed.  Arduino builder created the file and placed some required information in it.  
+
+If we compile without it, we get an error:
+
+::
+
+    /home/marcidy/.arduino15/packages/arduino/tools/avr-gcc/7.3.0-atmel3.6.1-arduino5/bin/../lib/gcc/avr/7.3.0/../../../../avr/lib/avr5/crtatmega328p.o:(.init9+0x0): undefined reference to `main'
+    collect2: error: ld returned 1 exit status
+
+
+This is a bit cryptic, but C/C++ requires that there be one, and only one, function named "main".  The location of this function is mentioned in :ref:`arduino_libraries`, and detailed further in :ref:`maincpp`.
+
+However, the linker is complaining about crtatemega328p.o
+
+If we look in that location of that file, we see a large number of files related to different chips, as well as `libc` and `libm`.
+
+This directory is storing the architecture specific object code required for compiliation to our target architecture.  
+
+The issue here is a step performed by `arduino_builder` has not been echoed to the screen, and we've missed the step which picks up all the architecture specific object code and puts it in the build cache.
+
+The major inputs to the linker are compiled files.  These can be code compiled specifically as part of your project, or other files found elsewhere that have been compiled for the target architecture.  
