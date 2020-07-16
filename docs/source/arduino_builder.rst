@@ -117,7 +117,7 @@ From this command, we see that the tool has determined what hardware we are usin
 
 If you run this command on it's own, you'll see a wealth of information.
 
-.. literalinclude:: arduino_build_dump_perfs.txt
+.. literalinclude:: _static/arduino_build_dump_perfs.txt
     :language: none
 
 Yikes, that's a lot.  I think my bank code is in there.  Well, you can peruse that if you want.  It's listing some programs it will use, options for those programs, and locations in the filesystem.
@@ -161,7 +161,7 @@ Running the command on it's own displays output related to compilation.
 
 The lines like `===info |||` looks like it's information for the IDE itself.  Removing those, we see these commands run:
 
-.. literalinclude:: arduino_builder_compile_clean.txt
+.. literalinclude:: _static/arduino_builder_compile_clean.txt
     :language: none
 
 
@@ -190,7 +190,7 @@ Look at build.options.json and include.cache, but we're going to look in the "pr
 
 In the 'preproc' directory, there's just one file.
 
-.. literalinclude:: ctags_target_for_gcc_minus_e.cpp
+.. literalinclude:: _static/ctags_target_for_gcc_minus_e.cpp
     :language: none
 
 This file looks a lot like the sketch, but with a change on the first line.  We'll, at least they give us a hint about what the file is for in the filename:  `ctags target for gcc -E`.
@@ -212,7 +212,7 @@ Sketch Preprocessing
 
 `arduino-builder` converted the sketch into valid C++ by automatically making changes to the .ino file.  Take a look at Fade.ino.cpp.
 
-.. literalinclude:: Fade.ino.cpp
+.. literalinclude:: _static/Fade.ino.cpp
     :language: none
 
 We see the additions of `#line` directives, along with *function prototypes* for `setup()` and `loop()`.  

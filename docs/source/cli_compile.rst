@@ -5,7 +5,7 @@ Command Line Compilation
 ========================
 At this stage we have a valid C++ file, maybe output from :ref:`arduino_builder` preprocessing the sketch.  We saw in that section that the IDE actually executes a number of commands not echoed to the screen:
 
-.. literalinclude:: arduino_build_compile_compressed.txt
+.. literalinclude:: _static/arduino_build_compile_compressed.txt
 
 We'll go line by line.  I've expanded the first to split out all the options passed to avr-g++.
 

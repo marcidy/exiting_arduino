@@ -133,7 +133,7 @@ Main
 ----
 Every C++ program must have a main function, and only one main function.  You must have noted that arduino doesn't use main, they use loop and setup.  That's because arduino's main program is located somewhere else entirely.  What's that look like you say?  Funny you should ask.  For arduino 1.8.10, it's located in `/home/marcidy/arduino-1.8.10/hardware/arduino/avr/cores/arduino/main.cpp`
 
-.. literalinclude:: main.cpp
+.. literalinclude:: _static/main.cpp
     :language: C++
 
 Well, well, well.  Look at what we have here.  Ignoring everything else, notice the "setup()" function and the "loop()" function?  Do you see why "loop" isn't a loop by itself, but gets executed inside a loop?  

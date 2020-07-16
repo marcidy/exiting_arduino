@@ -1,7 +1,7 @@
 .. _programming_language: 
 
-Programming Lanauge
-===================
+Programming Langauge
+====================
 Let's discuss what a pogrammming lanauge is.  
 
 We write source code, which is a bunch of text in a file.  Compilation translates this text into a instructions that the target processor can run.   Instead of looking at it as text in a file, let's think about it more generally:  It's a long list of symbols, including spaces, new lines, etc.  Everything in the file is just a long list of single-characters.  How does the compilier differentiate all those symbols?
