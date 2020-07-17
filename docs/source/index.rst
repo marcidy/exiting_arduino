@@ -18,6 +18,9 @@ Exiting Arduino
    architecture_introduction
    programming_language
    compilation
+   uploading_firmware
+   electrically_programming
+
 
 Indices and tables
 ==================
